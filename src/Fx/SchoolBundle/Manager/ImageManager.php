@@ -39,6 +39,13 @@ class ImageManager
     public function newImage(){
        return new Image();
    }
+    //    FUNCION PARA EXTRAER EL USUARIO LOGEADO
+    public function getUserLogeado(){
+        /** @var Usuario $usuario */
+        $usuario=$this->tokenStorage->getToken()->getUser();
+
+        return $usuario;
+    }
    public function addFoto(Image $image){
         if(is_null($image->getFile())){
             throw new  SchoolException("NO PODEMOS CARGAR TU IMAGEN");
@@ -54,9 +61,7 @@ class ImageManager
             throw new  SchoolException("NO PODEMOS CARGAR TU IMAGEN");
         }
 
-        /** @var Usuario $usuario */
-        $usuario=$this->tokenStorage->getToken()->getUser();
-        $image->setUsuario($usuario);
+        $image->setUsuario($this->getUserLogeado());
 
         $this->em->persist($image);
         $this->em->flush();

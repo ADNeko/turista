@@ -53,7 +53,7 @@ class ConsultarController extends Controller
      */
     public function IndexAction(Request $request)
     {
-        $ip=$this->container->get('request')->getClientIp();
+        $ip = $request->getClientIp();
         $document = $this->imageManager->newImage();
         $form = $this->createForm(new ImageType(), $document, array(
             'action' => $this->generateUrl('fx_tourist.foto.subir'),
