@@ -52,7 +52,7 @@
                 <th>Estado</th>
 
                 <td class="estado-usuario">
-                {% if is_granted('ROLE_DIRECTOR') %}
+                {% if is_granted('ROLE_ADMIN') %}
                     {% if entity.enabled %}
                         <span class="label label-success"> Habilitado </span>
                         {{ render(controller('FxSchoolBundle:Usuario:disable', {'usuario': entity }) ) }}
