@@ -20,7 +20,7 @@
                    href="{{ path('fx_school.usuario.show', { 'id': entity.id }) }}">Ver</a>
                 <a class="btn btn-default btn-xs" href="{{ path('fx_school.usuario.edit', { 'id': entity.id }) }}">Editar</a>
 
-                {% if is_granted('ROLE_DIRECTOR') %}
+                {% if is_granted('ROLE_ADMIN') %}
                     {% if entity.enabled %}
                         {{ render(controller('FxSchoolBundle:Usuario:disable', {'usuario': entity }) ) }}
                     {% else %}
