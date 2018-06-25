@@ -188,7 +188,7 @@ class UsuarioController extends Controller
     /**
      * @Route("/{id}/edit", name="fx_school.usuario.edit", requirements={"id": "\d+"})
      * @ParamConverter("entity", class="FxSchoolBundle:Usuario")
-     * @Security("has_role('ROLE_COORDINADOR')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Method({"GET", "PUT"})
      */
     public function editAction(Request $request, Usuario $entity)
