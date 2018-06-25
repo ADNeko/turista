@@ -19,7 +19,7 @@ use JMS\Serializer\Annotation\Expose;
 class Usuario extends BaseUser
 {
     //region Roles
-    const ROL_ADMISION     = 'admision';
+    const ROL_VISITANTE     = 'visitante';
 
     const ROL_ADMINISTRADOR = 'administrador';
     //endregion
@@ -85,7 +85,7 @@ class Usuario extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->rol=Usuario::ROL_ADMISION;
+        $this->rol=Usuario::ROL_VISITANTE;
     }
     //endregion
 

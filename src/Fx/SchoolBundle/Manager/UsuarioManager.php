@@ -61,8 +61,6 @@ class UsuarioManager
         $usuario->setEnabled(true);
         $this->setRoles($usuario, $usuario->getRol());
 
-        if (!$usuario->getLocales()->contains($usuario->getLocalPrincipal()))
-            $usuario->addLocale($usuario->getLocalPrincipal());
 
         $this->userManager->updateUser($usuario);
         $this->logger->log('info', 'Se creó el usuario ' . $usuario->getUsername() . '.');

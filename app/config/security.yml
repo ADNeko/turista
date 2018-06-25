@@ -37,6 +37,7 @@ security:
         - { path: ^/favicon.ico$, role: IS_AUTHENTICATED_ANONYMOUSLY}
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/registrarse, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/request$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/send-email$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/check-email$, role: IS_AUTHENTICATED_ANONYMOUSLY }

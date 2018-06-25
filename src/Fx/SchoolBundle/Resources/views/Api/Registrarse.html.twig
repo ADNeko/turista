@@ -1,0 +1,10 @@
+{% extends 'FxSchoolBundle:Api:layout.html.twig' %}
+
+{% block page_header %} Usuarios {% endblock %}
+{% block sub_header %} Registrar {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        {% include 'FxSchoolBundle:Api:Form/usuario_form.html.twig' with {form: form, action: 'Registrar'} %}
+    </div>
+{% endblock %}
