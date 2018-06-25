@@ -39,7 +39,13 @@ class Image
     private $file;
 
     private $temp;
-
+    /**
+     * @var Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Fx\SchoolBundle\Entity\Usuario", fetch="EAGER")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
+     */
+    private $usuario;
     /**
      * Sets file.
      *
@@ -144,27 +150,27 @@ class Image
             unlink($file);
         }
     }
-//    /**
-//     * Set estudiante
-//     *
-//     * @param \Fx\SchoolBundle\Entity\Estudiante $estudiante
-//     * @return Foto
-//     */
-//    public function setEstudiante(\Fx\SchoolBundle\Entity\Estudiante $estudiante)
-//    {
-//        $this->estudiante = $estudiante;
-//
-//        return $this;
-//    }
-//
-//
-//    /**
-//     * Get estudiante
-//     *
-//     * @return \Fx\SchoolBundle\Entity\Estudiante
-//     */
-//    public function getEstudiante()
-//    {
-//        return $this->estudiante;
-//    }
+    /**
+     * Set estudiante
+     *
+     * @param \Fx\SchoolBundle\Entity\Usuario $estudiante
+     * @return Image
+     */
+    public function setUsuario(\Fx\SchoolBundle\Entity\Usuario $estudiante=null)
+    {
+        $this->usuario = $estudiante;
+
+        return $this;
+    }
+
+
+    /**
+     * Get estudiante
+     *
+     * @return \Fx\SchoolBundle\Entity\Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
 }

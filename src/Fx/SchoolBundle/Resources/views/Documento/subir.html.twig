@@ -47,6 +47,7 @@
                     </div>
                 </div>
             </div>
+            {% if location.Latitude is defined and location.Longitude is defined %}
             <div class="row">
                 <div class="col-md-12">
 
@@ -75,6 +76,7 @@
                 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALLlEAKDoNYK-B8WSfofxdGyPWEnYxZRg&callback=myMap"></script>
 
             </div>
+            {% endif %}
         </div>
 
 

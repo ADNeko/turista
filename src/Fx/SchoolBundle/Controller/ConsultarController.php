@@ -63,7 +63,7 @@ class ConsultarController extends Controller
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $this->imageManager->addFoto($document);
+                $this->imageManager->addFotoUser($document);
                 $this->addFlash('success', "Foto Analizada.");
 
                 return $this->render('FxSchoolBundle:Documento:subir.html.twig',array(

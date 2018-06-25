@@ -4,15 +4,9 @@ namespace Fx\SchoolBundle\Manager;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
-use Fx\SchoolBundle\Entity\Clase;
-use Fx\SchoolBundle\Entity\Estudiante;
-use Fx\SchoolBundle\Entity\Practica;
-use Fx\SchoolBundle\Entity\Practicante;
-use Fx\SchoolBundle\Entity\Reprogramacion;
+
 use Fx\SchoolBundle\Entity\Usuario;
 use Fx\SchoolBundle\Exception\SchoolException;
-use Fx\SchoolBundle\Form\Model\BuscarClasesDocente;
-use Fx\SchoolBundle\Repository\ClaseRepository;
 use Fx\SchoolBundle\Utils\FxUtils;
 use Liuggio\ExcelBundle\Factory;
 use Symfony\Bridge\Monolog\Logger;
