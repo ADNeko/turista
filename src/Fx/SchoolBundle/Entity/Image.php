@@ -40,6 +40,12 @@ class Image
 
     private $temp;
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ip", type="string", length=30, nullable=true)
+     */
+    private $ip;
+    /**
      * @var Usuario
      *
      * @ORM\ManyToOne(targetEntity="Fx\SchoolBundle\Entity\Usuario", fetch="EAGER")
@@ -172,5 +178,27 @@ class Image
     public function getUsuario()
     {
         return $this->usuario;
+    }
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     * @return Image
+     */
+    public function setIp($estado)
+    {
+        $this->ip = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get ip
+     *
+     * @return string
+     */
+    public function getIp()
+    {
+        return $this->ip;
     }
 }
