@@ -1,0 +1,148 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: "@FxSchoolBundle/Resources/config/services.yml" }
+    - { resource: "@FxSchoolBundle/Resources/config/admin.yml" }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    autoescape:        false
+    globals:
+        project_name: 'TURIST MANAGER 0.3'
+        date_format: 'Y-m-d'
+        short_date_format: 'd/m/Y'
+        long_date_format: 'l j \d\e F \d\e Y'
+        app_folder: '%kernel.root_dir%'
+    form_themes:
+        - ':Form:fx_bootstrap3_horizontal_layout.html.twig'
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:
+        - FxSchoolBundle
+
+
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_css:
+        #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+    sender_address: "noreply@iestpflavisur.edu.pe"
+    disable_delivery: true
+# FOS UserBundle
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Fx\SchoolBundle\Entity\Usuario
+    from_email:
+            address: sfneko@gmail.com
+            sender_name: datatec
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf
+        options:
+            page-size: 'A4'
+            zoom: 0.5
+            disable-smart-shrinking: true
+
+    image:
+        enabled:    false
+        binary:     /usr/local/bin/wkhtmltoimage
+        options:    []
+
+monolog:
+    channels: ['school']
+    handlers:
+        main:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+        school:
+            type: stream
+            path:  %kernel.logs_dir%/school_%kernel.environment%.log
+            channels: [school]
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        # Your other block
+
+#sonata_admin:
+#    title:      Administración del sistema
+#    title_logo: bundles/fxschool/images/logo_mundo.png
+
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [FxSchoolBundle]
+
+cayetanosoriano_hashids:
+    salt: "gSga4DYK"
+    min_hash_length: 10
+    alphabet: "abcdefghjkmnpqrstuvwxyz0123456789"
+
+accelerator_cache:
+#    host: intranet.%base_host%
+    web_dir: %kernel.root_dir%/../web

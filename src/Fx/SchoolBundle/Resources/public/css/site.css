@@ -1,0 +1,389 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    /*background-image: url("../images/logo_mundo_bg.png");*/
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 500px;
+    background-color: #f6f6f6;
+    padding-top: 60px;
+}
+
+html,
+body {
+    height:100%;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.page-header {
+    margin-top: 0;
+    margin-bottom: 3px;
+}
+
+.sub-header {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+    border: 0;
+}
+
+/*
+ * https://github.com/IronSummitMedia/startbootstrap-simple-sidebar/
+ */
+
+/*
+ * Wrapper
+ */
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+/*
+ * Sidebar wrapper
+ */
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+/*
+ * Page content wrapper
+ */
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#footer-wrapper {
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 0;
+    padding: 20px;
+    display: none;
+    background: rgba(240, 245, 250, 0.30);
+    border-top: 1px solid #DEE3EC;
+}
+
+#wrapper.toggled #page-content-wrapper,
+#wrapper.toggled #footer-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+#wrapper {
+    min-height:100%;
+    position:relative;
+}
+
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+    #sidebar-wrapper {
+        width: 250px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+    #page-content-wrapper {
+        padding: 20px;
+        padding-bottom: 80px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper,
+    #wrapper.toggled #footer-wrapper{
+        position: relative;
+        margin-right: 0;
+    }
+
+    #footer-wrapper {
+        margin-left: -250px;
+        padding-left: 270px;
+        display: block;
+    }
+}
+
+
+/*
+ * Sidebar toggle button
+ */
+#fx-sidebar-toggle-btn {
+    float: left;
+    margin-left: 15px;
+}
+
+#fx-navbar-menu-btn {
+    margin-left: 15px;
+    maring-right: 15px;
+    color: white;
+}
+
+/*
+ * Brand
+ */
+
+.navbar-brand {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30px;
+    font-style: italic;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    background-color: #364150;
+    border-top: 1px solid #23282e;
+    border-right: 1px solid #eee;
+    color: #e1ffff;
+}
+
+.sidebar a {
+    color: #e1ffff;
+}
+
+.sidebar li {
+    list-style: none;
+    cursor: pointer;
+    padding: 0px;
+    margin: 0px;
+}
+
+.sidebar li a {
+    text-decoration: none;
+    color: #e1ffff;
+}
+
+.sidebar li.submenu-header > a::before {
+    font-family: FontAwesome;
+    content: "\f078";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+    float: right;
+}
+
+.sidebar li a i {
+    width: 20px;
+}
+
+.sidebar > ul > li {
+    border-bottom: 1px solid #23282e;
+}
+
+.sidebar > ul > li.active {
+    background-color: #3e4b5c;
+}
+
+.sidebar > ul > li.active > a {
+    border-left: 3px solid #18bc9c;
+}
+
+.sidebar > ul > li > a:hover,
+.sidebar > ul > li > a:focus {
+    text-decoration:none;
+    background-color:#23282e;
+}
+
+.sidebar .submenu {
+    padding-left: 0;
+}
+
+.sidebar .submenu li {
+    padding-left: 10px;
+}
+
+.sidebar .submenu li.active,
+.sidebar .submenu li.active a {
+    color: #18bc9c;
+}
+
+.sidebar .submenu ul,
+.sidebar .submenu li {
+    background-color: #181c20;
+    border: none;
+    line-height: 28px;
+    border-bottom: 1px solid #23282e;
+    margin-left: -3px;
+}
+
+.sidebar .submenu li:hover {
+    background-color: #020203;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 1s ease;
+}
+
+.sidebar .submenu li:before {
+    font-family: FontAwesome;
+    content: "\f105";
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+.sidebar > ul > li:not(.active):hover > a {
+    padding-left: 20px;
+    background-color: #4f5b69;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+/*
+ * Footer
+ */
+
+#footer p.text-muted {
+    color: #90979D;
+}
+
+#footer a {
+    color: #556472;
+}
+
+/**
+ * Others
+ */
+
+.row {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #364150;
+}
+
+.alert {
+    margin-bottom: 10px;
+}
+
+div.fx-button-container {
+    margin-bottom: 12px;
+}
+
+div.fx-button-container > form {
+    display: inline;
+}
+
+div.fx-button-container button,
+div.fx-button-container a.btn
+{
+    margin-right: 10px;
+}
+
+.fx-line {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-color: #DADADA;
+}
+
+.fx-modulo-panel form,
+.fx-inscripcion-panel form,
+.fx-horarios-table form,
+.fx-periodos-table form,
+.fx-entities-table form,
+.fx-carreras-table form,
+.fx-record-list-table form,
+.fx-form-inline {
+    display: inline;
+}
+
+table.fx-table-pull-right tr td:last-child {
+    white-space: nowrap;
+    width: 1px;
+}
+table.fx-table-pull-right tr td:last-child {
+    text-align: right;
+}
+
+.fx-flash-container {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.fx-flash-container .alert {
+    margin-top: 8px;
+}
+
+.fx-subsubheader {
+    margin-top: 2px;
+}
+
+.fx-record-properties-table {
+    margin-bottom: 0px;
+}
+
+.panel {
+    background-color: #FCFCFC;
+}
+
+table.table-notas tbody:hover td[rowspan], table.table-notas tr:hover td {
+    background: #ecf0f1;
+}

@@ -1,0 +1,128 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Datos principales</h3>
+    </div>
+    <div class="panel-body">
+        <table class="record_properties table table-hover table-condensed">
+            <tbody>
+            <tr>
+                <th>Nombre de usuario</th>
+                <td>{{ entity.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ entity.nombreCompleto | title }}</td>
+            </tr>
+            {#<tr>#}
+                {#<th>{{ entity.tipoDocumento | format_tipo_documento }}</th>#}
+                {#<td>{{ entity.documento }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Fecha de nacimiento</th>#}
+                {#<td>{{ entity.fechaNacimiento | date(short_date_format) }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Sexo</th>#}
+                {#<td>{{ entity.sexo | format_sexo }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Estado Civil</th>#}
+                {#<td>{{ entity.estadoCivil | format_estado_civil }}</td>#}
+            {#</tr>#}
+
+            {#<tr>#}
+                {#<th>Celular</th>#}
+                {#<td>{{ entity.celular }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Teléfono</th>#}
+                {#<td>{{ entity.telefono }}</td>#}
+            {#</tr>#}
+
+            {#<tr>#}
+                {#<th>Rol</th>#}
+                {#<td>{{ entity.rol | capitalize }}</td>#}
+            {#</tr>#}
+
+            <tr>
+                <th>Estado</th>
+
+                <td class="estado-usuario">
+                {% if is_granted('ROLE_DIRECTOR') %}
+                    {% if entity.enabled %}
+                        <span class="label label-success"> Habilitado </span>
+                        {{ render(controller('FxSchoolBundle:Usuario:disable', {'usuario': entity }) ) }}
+                    {% else %}
+                        <span class="label label-danger"> Deshabilitado </span>
+                        {{ render(controller('FxSchoolBundle:Usuario:enable',  {'usuario': entity }) ) }}
+                    {% endif %}
+                    <i class="fa fa-check fx-check"></i>
+                    <i class="fa fa-times fx-cross"></i>
+                    <i class="fa fa-spinner fa-spin fx-spinner"></i>
+                {% else %}
+                    {% if entity.enabled %}
+                        <span class="label label-success"> Habilitado </span>
+                    {% else %}
+                    {% endif %}
+                {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.fx-check').hide();
+        $('.fx-cross').hide();
+        $('.fx-spinner').hide();
+
+        var $estadoUsuario = $('.estado-usuario');
+        var $estadoForm = $estadoUsuario.find('form');
+
+        $estadoForm.submit(function () {
+
+            var $form = $(this);
+            var $tr = $form.closest('tr');
+
+            $tr.find('.fx-spinner').show();
+            $form.hide();
+
+            var data = {};
+            $.each($form.serializeArray(), function(i, field) {
+                data[field.name] = field.value;
+            });
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: data,
+                success: function (data) {
+                    if (data.status == 'ok') {
+                        $tr.find('.fx-check').show();
+                        showAlert('success', 'Se cambió el estado con éxito.');
+                        $tr.find('span').remove();
+                    } else {
+                        showAlert(status.errors);
+                        $tr.find('.fx-cross').show();
+                    }
+                },
+                error: function (data) {
+                    showAlert('error', 'Error del servidor.');
+                    $tr.find('.fx-cross').show();
+                },
+                complete: function() {
+                    $tr.find('form').remove();
+                    $tr.find('.fx-spinner').hide();
+                }
+            });
+
+            return false;
+        });
+    });
+</script>

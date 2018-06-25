@@ -1,0 +1,26 @@
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {% if form.plainPassword is defined %} {{ form_row(form.plainPassword) }} {% endif %}
+
+    {{ form_row(form.apellidoPaterno) }}
+    {{ form_row(form.apellidoMaterno) }}
+    {{ form_row(form.nombres) }}
+
+    {#{{ form_row(form.tipoDocumento) }}#}
+    {#{{ form_row(form.documento) }}#}
+
+    {#{{ form_row(form.fechaNacimiento) }}#}
+    {#{{ form_row(form.sexo) }}#}
+    {#{{ form_row(form.estadoCivil) }}#}
+
+    {#{{ form_row(form.celular) }}#}
+    {#{{ form_row(form.telefono) }}#}
+
+    {{ form_row(form.rol) }}
+
+
+{{ form_utils.fx_button(action) }}
+{{ form_end(form) }}

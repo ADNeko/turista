@@ -1,0 +1,45 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+        Fx\SchoolBundle\Entity\Estudiante: sha512
+
+    role_hierarchy:
+
+           ROLE_VISITANTE:    ROLE_USER
+           ROLE_ADMIN:       [ROLE_VISITANTE]
+           ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            anonymous: true
+        main:
+            pattern: ^/
+#            host: intranet.%base_host%
+            form_login:
+                default_target_path: /
+                always_use_default_target_path: true
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/css, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/js, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/favicon.ico$, role: IS_AUTHENTICATED_ANONYMOUSLY}
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/request$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/send-email$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/check-email$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reset, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/, role: [ROLE_ESTUDIANTE, ROLE_USER] }

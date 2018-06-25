@@ -1,0 +1,53 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Datos de {{ usuario.nombreCompleto | upper }}</h3>
+    </div>
+    <div class="panel-body">
+        <table class="record_properties table table-hover table-condensed">
+            <tbody>
+            <tr>
+                <th>Nombre de usuario</th>
+                <td>{{ usuario.username }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ usuario.email }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ usuario.nombreCompleto | title }}</td>
+            </tr>
+            {#<tr>#}
+                {#<th>{{ usuario.tipoDocumento | format_tipo_documento }}</th>#}
+                {#<td>{{ usuario.documento }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Fecha de nacimiento</th>#}
+                {#<td>{{ usuario.fechaNacimiento | date(short_date_format) }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Sexo</th>#}
+                {#<td>{{ usuario.sexo | format_sexo }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Estado Civil</th>#}
+                {#<td>{{ usuario.estadoCivil | format_estado_civil }}</td>#}
+            {#</tr>#}
+
+            {#<tr>#}
+                {#<th>Celular</th>#}
+                {#<td>{{ usuario.celular }}</td>#}
+            {#</tr>#}
+            {#<tr>#}
+                {#<th>Teléfono</th>#}
+                {#<td>{{ usuario.telefono }}</td>#}
+            {#</tr>#}
+
+            <tr>
+                <th>Rol</th>
+                <td>{{ usuario.rol | capitalize }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% block page_header %} Usuarios {% endblock %}
+{% block sub_header %} Buscar {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        {% include 'FxSchoolBundle:Usuario:Form/search_form.html.twig' with {'form': search_form} %}
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 fx-button-container">
+            <a class="btn btn-primary" href="{{ path('fx_school.usuario.new') }}">
+                <i class="fa fa-plus-circle"></i> Nuevo usuario
+            </a>
+        </div>
+    </div>
+{% endblock %}

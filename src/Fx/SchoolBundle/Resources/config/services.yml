@@ -1,0 +1,29 @@
+services:
+    # Twig
+    fx.twig.fx_extension:
+        class: Fx\SchoolBundle\Twig\FxExtension
+        tags:
+            - { name: twig.extension }
+
+    # Validators
+    fx_school.valid_name_validator:
+        class: Fx\SchoolBundle\Validator\ValidNameValidator
+        tags:
+            - { name: validator.constraint_validator, alias: valid_name }
+
+
+    fx_school.permitted_role_validator:
+        class: Fx\SchoolBundle\Validator\PermittedRoleValidator
+        arguments:
+            - @security.authorization_checker
+        tags:
+            - { name: validator.constraint_validator, alias: permitted_role }
+
+
+    # Listener mantenimiento
+    fx_school.listener.maintenance:
+        class: Fx\SchoolBundle\Listener\MaintenanceListener
+        arguments:
+            container: "@service_container"
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }

@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Sistema en mantenimiento {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        #error-container {
+            margin-top: 30px;
+        }
+
+        #error-container p {
+            font-size: 17px;
+        }
+
+        .button-container a.btn,
+        .button-container button {
+            margin-right: 10px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div id="wrapper" class="col-lg-12">
+                <div id="error-container" class="jumbotron">
+                    <h1>ANUNCIO:</h1>
+
+                    <h2>El sistema no está operativo,actualmente se encuentra  en mantenimiento.</h2>
+
+                    <p>Regresará {{ maintenance_until }}.</p>
+
+                    <p>Estamos trabajando tan rápido como sea posible. Perdón por los problemas causados.</p>
+
+                    <div class="button-container">
+                        {#<a class="btn btn-primary" href="{{ path('fx_school.default.index') }}"><i#}
+                                    {#class="fa fa-home"></i> Regresar al inicio</a>#}
+                        <a class="btn btn-info" href="mailto:sfneko@gmail.com"><i class="fa fa-envelope"></i> Contactar
+                            al administrador</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

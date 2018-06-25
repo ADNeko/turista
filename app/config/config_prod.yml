@@ -1,0 +1,37 @@
+imports:
+    - { resource: config.yml }
+
+#framework:
+#    validation:
+#        cache: apc
+
+doctrine:
+    orm:
+        auto_mapping: true
+        query_cache_driver:    apcu
+        metadata_cache_driver: apcu
+        result_cache_driver: apcu
+monolog:
+    handlers:
+        main:
+            type:               fingers_crossed
+            action_level:       error
+            handler:            grouped
+        grouped:
+            type:               group
+            members:            [streamed, swift]
+        streamed:
+            type:               stream
+            path:               "%kernel.logs_dir%/%kernel.environment%.log"
+            level:              debug
+        swift:
+            type:               swift_mailer
+            from_email:         sistema.escomape@gmail.com
+            to_email:           informaticaescomape@gmail.com
+            subject:            "Sistema escomape.sf"
+            level:              debug
+        login:
+            type:               stream
+            path:               "%kernel.logs_dir%/auth.log"
+            level:              info
+            channels:           security

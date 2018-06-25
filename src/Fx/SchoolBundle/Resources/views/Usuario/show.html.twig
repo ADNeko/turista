@@ -1,0 +1,22 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% block page_header %} Usuarios {% endblock %}
+{% block sub_header %} Ver {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            {% include 'FxSchoolBundle:Usuario:Record/record_properties.html.twig' %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 fx-button-container">
+            <a class="btn btn-default" href="{{ path('fx_school.usuario.index') }}"> <i class="fa fa-search"></i> Ir al
+                buscador </a>
+            <a class="btn btn-primary" href="{{ path('fx_school.usuario.edit', { 'id': entity.id }) }}"> <i
+                        class="fa fa-pencil-square-o"></i> Editar </a>
+            {{ form_utils.delete_form(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

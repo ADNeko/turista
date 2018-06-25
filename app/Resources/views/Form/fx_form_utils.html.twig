@@ -1,0 +1,38 @@
+{% macro fx_button(label, icon, class) %}
+    {% set label = label | default ('Click Me!') %}
+    {% set icon = icon | default ('') %}
+    {% set class = class | default('btn btn-primary') %}
+
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <button type="submit" class="{{ class }}">
+                    <i class="fa {{ icon }}"></i> {{ label }}
+            </button>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro button_form(form, label, icon, class) %}
+    {% set label = label | default ('Click Me!') %}
+    {% set icon  = icon  | default ('') %}
+    {% set class = class | default('btn btn-primary') %}
+
+    {{ form_start(form) }}
+    <button type="submit" id="{{ form.submit.vars.id }}" name="{{ form.submit.vars.name }}" class="{{ class }}"><i class="fa {{ icon }}"></i> {{ label }}</button>
+    {% do form.submit.setRendered %}
+    {{ form_end(form) }}
+{% endmacro %}
+
+
+{% macro delete_form(form, label, icon, class) %}
+    {% set label = label | default ('Eliminar') %}
+    {% set icon = icon | default ('fa-trash') %}
+    {% set class = class | default('btn btn-danger') %}
+
+    {{ form_start(form) }}
+    <button type="submit" id="{{ form.submit.vars.id }}" name="{{ form.submit.vars.name }}" class="{{ class }}"><i class="fa {{ icon }}"></i> {{ label }}</button>
+    {% do form.submit.setRendered %}
+    {{ form_end(form) }}
+{% endmacro %}
+

@@ -1,0 +1,87 @@
+<table id="fx-usuarios-table" class="table table-condensed table-bordered table-hover fx-record-list-table">
+    <thead>
+    <tr>
+        <th>Nombre</th>
+        <th>Documento</th>
+        <th>Celular</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td>{{ entity.nombreCompleto | title }}</td>
+            <td>{{ entity.documento }}</td>
+            <td>{{ entity.celular }}</td>
+            <td>{{ entity.rol | capitalize }}</td>
+            <td>
+                <a class="btn btn-primary btn-xs"
+                   href="{{ path('fx_school.usuario.show', { 'id': entity.id }) }}">Ver</a>
+                <a class="btn btn-default btn-xs" href="{{ path('fx_school.usuario.edit', { 'id': entity.id }) }}">Editar</a>
+
+                {% if is_granted('ROLE_DIRECTOR') %}
+                    {% if entity.enabled %}
+                        {{ render(controller('FxSchoolBundle:Usuario:disable', {'usuario': entity }) ) }}
+                    {% else %}
+                        {{ render(controller('FxSchoolBundle:Usuario:enable',  {'usuario': entity }) ) }}
+                    {% endif %}
+                    <i class="fa fa-check fx-check"></i>
+                    <i class="fa fa-times fx-cross"></i>
+                    <i class="fa fa-spinner fa-spin fx-spinner"></i>
+                {% endif %}
+
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(function () {
+        $('.fx-check').hide();
+        $('.fx-cross').hide();
+        $('.fx-spinner').hide();
+
+        var $tableUsuarios = $('#fx-usuarios-table');
+        var $tableUsuariosForms = $tableUsuarios.find('form');
+
+        $tableUsuariosForms.submit(function () {
+
+            var $form = $(this);
+            var $tr = $form.closest('tr');
+
+            $tr.find('.fx-spinner').show();
+            $form.hide();
+
+            var data = {};
+            $.each($form.serializeArray(), function(i, field) {
+                data[field.name] = field.value;
+            });
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: data,
+                success: function (data) {
+                    if (data.status == 'ok') {
+                        $tr.find('.fx-check').show();
+                    } else {
+                        showAlert('error', status.errors);
+                        $tr.find('.fx-cross').show();
+                    }
+                },
+                error: function (data) {
+                    showAlert('error', 'Error del servidor.');
+                    $tr.find('.fx-cross').show();
+                },
+                complete: function() {
+                    $tr.find('form').remove();
+                    $tr.find('.fx-spinner').hide();
+                }
+            });
+
+            return false;
+        });
+    });
+</script>

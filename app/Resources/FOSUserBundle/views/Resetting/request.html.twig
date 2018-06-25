@@ -1,0 +1,26 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+{% block stylesheets %}
+{{ parent () }}
+<style>
+    body {
+        background-image: url(http://imageshack.com/a/img540/6214/JX1sWX.png);
+    }
+</style>
+{% endblock %}
+{% block fos_user_content %}
+
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request form-horizontal">
+        <div class="form-group">
+            {% if invalid_username is defined %}
+                <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</p>
+            {% endif %}
+            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+            <input type="text" class="form-control input-" id="username" name="username" required="required"
+                   placeholder="beto"/>
+        </div>
+        <input class="btn btn-primary" type="submit" value="{{ 'resetting.request.submit'|trans }}"/>
+    </form>
+
+{% endblock %}

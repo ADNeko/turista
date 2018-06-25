@@ -1,0 +1,34 @@
+fos_user:
+#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+#    host:     intranet.%base_host%
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+#    host:     intranet.%base_host%
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+#    host:     intranet.%base_host%
+
+#admin:
+#    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+#    prefix:   /admin
+#    host:     intranet.%base_host%
+#
+#_sonata_admin:
+#    resource: .
+#    type:     sonata_admin
+#    prefix:   /admin
+#    host:     intranet.%base_host%
+
+
+
+fx_school:
+    resource: "@FxSchoolBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+fx_school.security.logout:
+    path:   /logout
+#    host:     aulavirtual.%base_host%

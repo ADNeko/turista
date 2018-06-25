@@ -1,0 +1,87 @@
+Fx\SchoolBundle\Entity\Usuario:
+    properties:
+        username:
+            - NotBlank: ~
+            - Regex:
+                pattern: /^[A-Za-z][A-Za-z0-9_]*$/
+                message: El nombre de usuario debe empezar por una letra y consistir de solo letras, números y subguiones.
+            - Length:
+                min: 2
+                max: 100
+        plainPassword:
+            - NotBlank:
+                groups: [registration]
+            - Length:
+                min: 6
+                max: 100
+        apellidoPaterno:
+            - NotBlank: ~
+            - Fx\SchoolBundle\Validator\Constraints\ValidName: ~
+            - Length:
+                min: 2
+                max: 100
+        apellidoMaterno:
+            - Fx\SchoolBundle\Validator\Constraints\ValidName: ~
+            - Length:
+                min: 2
+                max: 100
+        nombres:
+            - NotBlank: ~
+            - Fx\SchoolBundle\Validator\Constraints\ValidName: ~
+            - Length:
+                min: 2
+                max: 100
+        email:
+            - Email: ~
+            - Length:
+                max: 50
+#        tipoDocumento:
+#            - NotBlank: ~
+#            - Choice:
+#                choices: [dni, pasaporte]
+#        documento:
+#            - NotBlank: ~
+#            - Length:
+#                min: 8
+#                max: 20
+#            - Regex:
+#                pattern: '/^[A-Z0-9]+$/'
+#        fechaNacimiento:
+#            - NotBlank: ~
+#            - Date: ~
+#        sexo:
+#            - NotBlank: ~
+#            - Choice:
+#                choices: [m, f]
+#        estadoCivil:
+#            - NotBlank: ~
+#            - Choice:
+#                choices: [s, c, d, v]
+#        celular:
+#            - Length:
+#                min: 9
+#                max: 9
+#            - Regex:
+#                pattern: /^\d*$/
+#                message: Escriba el número solamente usando dígitos del 0 al 9.
+#        telefono:
+#            - Length:
+#                min: 6
+#                max: 9
+#            - Regex:
+#                pattern: /^\d*$/
+#                message: Escriba el número solamente usando dígitos del 0 al 9.
+        rol:
+            - NotBlank: ~
+            - Choice:
+                choices: [visitante, administrador]
+            - Fx\SchoolBundle\Validator\Constraints\PermittedRole: { groups: [registration, edit] }
+
+    constraints:
+#        - Fx\SchoolBundle\Validator\Constraints\ValidDocument: ~
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
+#        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+#            fields: [tipoDocumento, documento]
+#            errorPath: documento
+#            message: Este documento ya está registrado.

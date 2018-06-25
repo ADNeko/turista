@@ -1,0 +1,22 @@
+{% extends "FxSchoolBundle::layout.html.twig" %}
+
+{% block title %}{{ project_name }} - Inicio{% endblock %}
+
+{% block page_header %}
+    Bienvenido
+{% endblock %}
+
+{% block sub_header %}
+    {{ user.nombreCompleto }}
+{% endblock %}
+
+{% block content %}
+    {% if user.lastLogin %}
+        <p class="lead">Tu última visita fue
+            el {{ user.lastLogin | localizeddate('full', 'full', app.request.locale ) }}.</p>
+
+    {% else %}
+        <p class="lead">¡Es la primera vez que nos visitas!</p>
+
+    {% endif %}
+{% endblock %}

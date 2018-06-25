@@ -1,0 +1,17 @@
+{% extends "FxSchoolBundle::layout.html.twig" %}
+
+{% block title %}¡Próximamente!{% endblock %}
+
+{% set hide_page_header = 1 %}
+{% set hide_sub_header = 1 %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1>¡Próximamente!</h1>
+
+        <p class="lead">Esta característica todavía no está disponible.</p>
+
+        <p><a class="btn btn-primary btn-lg" href="{{ path('fx_school.default.index') }}" role="button">Regresar al
+                inicio</a></p>
+    </div>
+{% endblock %}

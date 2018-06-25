@@ -1,0 +1,38 @@
+{% extends "bootstrap_3_horizontal_layout.html.twig" %}
+
+{# Form group class #}
+{% block form_group_class -%}
+    col-sm-8
+{%- endblock form_group_class %}
+
+{# Collection widget #}
+{% block collection_widget -%}
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': form_row(prototype) | escape }) -%}
+    {% endif %}
+    {{- block('form_widget') -}}
+{%- endblock collection_widget %}
+
+{# Choice widget #}
+{% block choice_widget_options -%}
+    {% for group_label, choice in options %}
+        {%- if choice is iterable -%}
+            <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                {% set options = choice %}
+                {{- block('choice_widget_options') -}}
+            </optgroup>
+        {%- else -%}
+            <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>{{ choice.label | upper }}</option>
+        {%- endif -%}
+    {% endfor %}
+{%- endblock choice_widget_options %}
+
+
+{# Money widget #}
+{% block money_widget -%}
+    <div class="input-group">
+        <span class="input-group-addon">S/.</span>
+        {{- block('form_widget_simple') -}}
+        {#<span class="input-group-addon">.00</span>#}
+    </div>
+{%- endblock money_widget %}

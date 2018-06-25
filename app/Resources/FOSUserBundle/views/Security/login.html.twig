@@ -1,0 +1,133 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+
+<style>body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #eee;
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .logo {
+        margin-bottom: 40px;
+    }</style>
+    <style>
+        body {
+            {#background-image: url({{ asset('bundles/fxschool/images/fondo.png') }});#}
+            background-repeat: no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-image: url('http://wallpapers4screen.com/Uploads/25-1-2016/16100/thumb2-journey-travelers-podorozh.jpg') ;
+        }
+    </style>
+{% endblock %}
+
+{% block fos_user_content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="panel panel-primary" >
+                    <div class="panel-heading">
+                        <center> <h3 class="panel-title">BIENVENIDOS A {{ project_name }}</h3></center>
+                    </div>
+                    <div class="panel-body">
+                        <p>{{ project_name }} es una fantástica herramienta en la nube  que permite analizar gran
+                            cantidad de imágenes y extraer información valiosa para comprender su contenido.
+
+                        </p>
+                        <br>
+                        <br>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">
+                               <h2  class="panel-title" style="text-align: center"> ¿QUÉ ESPERAS PARA USARLO?</h2>
+                            </a>
+                            <a href="{{ path('fx_tourist.foto.subir2') }}" class="list-group-item" style="text-align: center">IR A LA APLICACIÓN</a>
+                            <a href="#" class="list-group-item" style="text-align: center">REGISTRARSE</a>
+                            <a href="#" class="list-group-item" style="text-align: center">CONTACTAR A LOS DESARROLLADORES</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary" >
+                    <div class="panel-heading">
+                        <center> <h3 class="panel-title">LOGIN</h3></center>
+                    </div>
+                    <div class="panel-body">
+                        <form action="{{ path("fos_user_security_check") }}" class="form-signin" role="form" method="post">
+                            <h3 class="form-signin-heading"> </h3>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+                            <input type="text" id="username" name="_username" class="form-control" placeholder="Usuario"
+                                   value="{{ last_username }}" required="required"/>
+
+                            <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña"
+                                   required="required"/>
+
+                            <label class="checkbox">
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on"/> Recordarme
+                            </label>
+
+                            <input type="submit" id="_submit" name="_submit" class="btn btn-lg btn-primary btn-block"
+                                   value="Iniciar sesión"/>
+
+                            <p class="checkbox">
+                                <a class="btn btn-xs btn-info" href="{{ path('fos_user_resetting_request') }}">Olvidé mi contraseña</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

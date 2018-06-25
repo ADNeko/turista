@@ -1,0 +1,10 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% block page_header %} {{ entity.nombreCompleto | title }}{% endblock %}
+{% block sub_header %} Editar {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        {% include 'FxSchoolBundle:Usuario:Form/usuario_form.html.twig' with {form: edit_form, action: 'Actualizar'} %}
+    </div>
+{% endblock %}

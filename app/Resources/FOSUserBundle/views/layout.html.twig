@@ -1,0 +1,86 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ project_name }}{% endblock %}
+
+{% block body %}
+    {% block navbar %}
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle visible-xs" id="fx-sidebar-toggle-btn"
+                            onClick="$('#wrapper').toggleClass('toggled');">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <button id="fx-navbar-menu-btn" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#fx-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+                    </button>
+                    <a class="navbar-brand"
+                       href="{{ path('fx_tourist.foto.subir2') }}">Mi {{ project_name | capitalize }}
+                    </a>
+
+                </div>
+
+                {% if app.environment == 'dev' %}
+                    <div>
+                        <ul class="nav navbar-nav">
+                            <li><a href="#"><span class="label label-success">{{ 'Modo de desarrollo' | upper }}</span></a></li>
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+    <br><br>
+    <div class="container">
+        <div class="row logo">
+            <div class="col-md-12 ">
+                <img class="img-responsive" src="{{ asset('http://diaryoftrips.com/wp-content/uploads/2016/09/banner_7maravillas.jpg') }}"
+                     alt="{{ project_name }}"/>
+            </div>
+        </div>
+
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span
+                                aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {% if error is defined and error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span
+                            aria-hidden="true">&times;</span></button>
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+            <div class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span
+                            aria-hidden="true">&times;</span></button>
+                Ya has iniciado sesión, haz <a class="alert-link" href="{{ path('fx_school.default.index') }}">clic
+                    aquí</a> para ir al inicio.
+            </div>
+        {% endif %}
+
+        {% block fos_user_content %}
+        {% endblock %}
+    </div> <!-- /container -->
+    <footer>
+        <center>
+            Departamento de informática "{{ project_name }}"<br>
+            Av. Independencia  Oficina: <br>
+            Horario de atención:<br>
+            Sabados de 9:30 - 17:00
+            </center>
+    </footer>
+{% endblock %}

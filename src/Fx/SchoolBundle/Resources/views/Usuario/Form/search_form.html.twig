@@ -1,0 +1,12 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+<div class="form-group">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <span class="help-block">Ingrese las primeras letras del apellido o el documento de identidad; el rol y el local son opcionales.</span>
+    </div>
+</div>
+
+{{ form_utils.fx_button('Buscar', 'fa-search') }}
+{{ form_end(form) }}

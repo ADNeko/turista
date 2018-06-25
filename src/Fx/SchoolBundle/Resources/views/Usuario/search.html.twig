@@ -1,0 +1,27 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% block page_header %} Usuarios {% endblock %}
+{% block sub_header %} Resultados {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <button class="btn btn-primary fx-ghost-button" data-toggle="collapse" data-target="#search-form-wrapper"><i
+                        class="fa fa-search"></i> Volver a buscar
+            </button>
+            <div id="search-form-wrapper" class="collapse">
+                {% include 'FxSchoolBundle:Usuario:Form/search_form.html.twig' with {'form': search_form} %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            {% if entities %}
+                {% include 'FxSchoolBundle:Usuario:Record/record_list.html.twig' %}
+            {% else %}
+                <p>No se encontraron resultados</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

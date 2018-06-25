@@ -1,0 +1,104 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% block page_header %} NOSOTROS ANALIZAMOS TU FOTO!!!{% endblock %}
+
+{% block content -%}
+
+    <div class="row">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_utils.fx_button('Analizar') }}
+        {{ form_end(form) }}
+    </div>
+        {% if  resultados %}
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-info" >
+                            <div class="panel-heading">
+                               <center> <h3 class="panel-title">HEY  TE ENCUENTRAS EN : {{ resultados['lugar'] }} - {{ resultados['query']  }}</h3></center>
+                            </div>
+
+                        </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {% set location= resultados['location']  %}
+                        <div class="panel panel-info" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">FOTO</h3>
+                            </div>
+                            <div class="panel-body">
+                                <img src="{{ asset('uploads/fotos/'~ image.path) }}" width="100%" height="400px">
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-info" >
+                        <div class="panel-heading">
+                            <h3 class="panel-title">RESULTADO </h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ resultados['informacion']   | raw}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <center> <div class="panel panel-info" >
+                            <div class="panel-heading">
+                                <h3 class="panel-title">MAPITA =) </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="map" style="width:100%;height:500px;"></div>
+                            </div>
+                        </div></center>
+                </div>
+
+                <script>
+                function myMap() {
+                var mapCanvas = document.getElementById("map");
+                var mapOptions = {
+                center: new google.maps.LatLng({{ location.Latitude | json_encode | raw }},{{ location.Longitude | json_encode | raw }}),
+                zoom:18,
+                mapTypeId:google.maps.MapTypeId.HYBRID
+                };
+                var map = new google.maps.Map(mapCanvas,mapOptions);
+                }
+                </script>
+
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALLlEAKDoNYK-B8WSfofxdGyPWEnYxZRg&callback=myMap"></script>
+
+            </div>
+        </div>
+
+
+
+        {% endif %}
+
+    <div id="wait" style="display:none;width:100px;height:100px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;"><img src='https://www.w3schools.com/jquery/demo_wait.gif' width="100" height="100" /><br>Analizando..</div>
+
+
+
+
+    <script>
+        $(function () {
+
+            var $searchForm = $('form[name={{ form.vars.name }}]');
+
+
+            $searchForm.submit(function() {
+                $barra=$("#wait");
+                $barra.show();
+
+
+            });
+        });
+
+    </script>
+{% endblock %}

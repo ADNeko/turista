@@ -1,0 +1,97 @@
+{
+    "name": "fx/turista",
+    "license": "TBD",
+    "type": "project",
+    "description": "Turista",
+    "autoload": {
+        "psr-0": { "": "src/", "SymfonyStandard": "app/" }
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "sciactive/pnotify",
+                "version": "2.0.1",
+                "dist": {
+                    "url": "https://github.com/sciactive/pnotify/archive/2.0.1.zip",
+                    "type": "zip"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.7.*",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~3.0",
+        "sensio/distribution-bundle": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "friendsofsymfony/user-bundle": "~2.0",
+        "friendsofsymfony/jsrouting-bundle": "~1.5",
+        "sonata-project/doctrine-orm-admin-bundle": "~2.3",
+        "sonata-project/admin-bundle": "~2.3",
+        "knplabs/knp-menu-bundle": "2.0.*@dev",
+        "knplabs/knp-snappy-bundle": "1.2.*@dev",
+        "jms/serializer-bundle": "0.13.*@dev",
+        "jms/di-extra-bundle": "1.5.*@dev",
+        "components/jquery": "dev-master",
+        "components/bootstrap": "~3.3",
+        "components/font-awesome": "4.3.*@dev",
+        "components/typeahead.js": "dev-master",
+        "cayetanosoriano/hashids-bundle": "dev-master",
+        "hackzilla/password-generator-bundle": "dev-master",
+        "moment/moment": "dev-master",
+        "eonasdan/bootstrap-datetimepicker": "dev-master",
+        "drmonty/chosen": "dev-master",
+        "sciactive/pnotify": "2.0.*",
+        "liuggio/ExcelBundle": "2.0.*@dev",
+	    "smart-core/accelerator-cache-bundle": "^1.1",
+        "google/cloud-vision": "^0.12.0",
+        "google/protobuf": "^3.5",
+        "google/cloud-translate": "^1.2"
+
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~2.3"
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
+        ],
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin",
+        "platform": {"php": "7.2"}
+    },
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.5-dev"
+        }
+    }
+}

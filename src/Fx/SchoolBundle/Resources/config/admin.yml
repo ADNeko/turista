@@ -1,0 +1,6 @@
+services:
+    fx_school.admin.usuario:
+        class: Fx\SchoolBundle\Admin\UsuarioAdmin
+        arguments: [~, Fx\SchoolBundle\Entity\Usuario, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Usuario}

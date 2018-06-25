@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{{ project_name }}{% endblock %}</title>
+
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite' output='css/all.css'
+        'components/bootstrap/css/bootstrap-flatly.min.css'
+        'components/font-awesome/css/font-awesome.min.css'
+        'components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
+        'components/chosen/css/chosen.min.css'
+        '../vendor/sciactive/pnotify/pnotify.core.css'
+        '../vendor/sciactive/pnotify/pnotify.buttons.css' %}
+        <link href="{{ asset_url }}" rel="stylesheet" type="text/css"/>
+        {% endstylesheets %}
+    {% endblock %}
+    {% block javascripts %}
+        {% javascripts output='js/all.js'
+        'components/jquery/jquery.min.js'
+        'components/bootstrap/js/bootstrap.min.js'
+        'components/typeaheadjs/typeahead.bundle.min.js'
+        'components/moment/min/moment.min.js'
+        'components/moment/locale/es.js'
+        'components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+        'components/chosen/js/chosen.jquery.min.js'
+        '../vendor/sciactive/pnotify/pnotify.core.js'
+        '../vendor/sciactive/pnotify/pnotify.nonblock.js'
+        '../vendor/sciactive/pnotify/pnotify.buttons.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <style>
+            body{
+                zoom: 75%;
+            }
+        </style>
+    {% endblock %}
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:700italic' rel='stylesheet' type='text/css'>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('bundles/fxschool/images/favicon.ico') }}" />
+</head>
+<body>
+{% block body %}
+{% endblock %}
+</body>
+</html>

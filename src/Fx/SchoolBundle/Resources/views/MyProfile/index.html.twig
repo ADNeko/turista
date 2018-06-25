@@ -1,0 +1,37 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% set usuario = app.user %}
+
+{% block page_header %} Mi perfil {% endblock %}
+{% block sub_header %} {{ usuario.nombreCompleto | upper }} {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            {% include 'FxSchoolBundle:MyProfile:Record/user_properties.html.twig' %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Cambio de contraseña </h3>
+                </div>
+                <div class="panel-body">
+                    {{ form_start(change_password_form) }}
+                    {{ form_widget(change_password_form) }}
+                    {{ form_utils.fx_button('Cambiar') }}
+                    {{ form_end(change_password_form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 fx-button-container">
+            <a class="btn btn-primary"
+               href="{{ path('fx_school.default.index') }}"> <i class="fa fa-home"></i>
+                Inicio </a>
+        </div>
+    </div>
+{% endblock %}
