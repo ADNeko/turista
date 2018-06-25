@@ -25,7 +25,7 @@ class BuscarUsuarioType extends AbstractType
             ))
             ->add('rol', 'choice', array(
                 'choices'  => array(
-                    Usuario::ROL_VISITANTE    => 'VIsitante',
+                    Usuario::ROL_VISITANTE    => 'Visitante',
                     Usuario::ROL_ADMINISTRADOR => 'Administrador',
                 ),
                 'label'    => "Rol",

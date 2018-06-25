@@ -29,7 +29,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * @Route("/consulta")
- * @Security("has_role('ROLE_ADMIN')")
+ * @Security("has_role('ROLE_VISITANTE')")
  */
 class ConsultarController extends Controller
 {
