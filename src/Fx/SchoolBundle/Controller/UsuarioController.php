@@ -221,5 +221,59 @@ class UsuarioController extends Controller
         ));
     }
 
+    /**
+     * @Route("/{usuario_id}/deshabilitar", name="fx_school.usuario.disable")
+     * @ParamConverter("usuario", options={"id" = "usuario_id"})
+     * @Method("POST")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function disableAction(Request $request, Usuario $usuario)
+    {
+        $form = $this->helper->createDeshabilitarForm($usuario);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->usuarioManager->deshabilitar($usuario);
+
+                return new JsonResponse(array('status' => 'ok'));
+            } catch (SchoolException $exception) {
+                return new JsonResponse(array('status' => 'fail', 'error' => $exception->getMessage()));
+            }
+        }
+
+        return $this->render('FxSchoolBundle:Usuario:Form/disable_form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+
+    /**
+     * @Route("/{usuario_id}/habilitar", name="fx_school.usuario.enable")
+     * @ParamConverter("usuario", options={"id" = "usuario_id"})
+     * @Method("POST")
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function enableAction(Request $request, Usuario $usuario)
+    {
+        $form = $this->helper->createHabilitarForm($usuario);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $this->usuarioManager->habilitar($usuario);
+
+                return new JsonResponse(array('status' => 'ok'));
+            } catch (SchoolException $exception) {
+                return new JsonResponse(array('status' => 'fail', 'error' => $exception->getMessage()));
+            }
+        }
+
+        return $this->render('FxSchoolBundle:Usuario:Form/enable_form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
 }
 
