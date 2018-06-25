@@ -62,7 +62,7 @@ class UsuarioType extends AbstractType
 //            ))
             ->add('rol', 'choice', array(
                 'choices'  => array(
-                    Usuario::ROL_ADMISION    => 'VISITANTE',
+                    Usuario::ROL_VISITANTE    => 'VISITANTE',
                     Usuario::ROL_ADMINISTRADOR => 'Administrador',
                 ),
                 'required' => true,
