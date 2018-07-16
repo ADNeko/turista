@@ -66,5 +66,13 @@ class ImageManager
         $this->em->persist($image);
         $this->em->flush();
     }
+    public function getImageUser(){
+        /** @var Usuario $usuario */
+        $usuario=$this->tokenStorage->getToken()->getUser();
 
+        $resultados=$this->em->getRepository('FxSchoolBundle:Image')->findBy(array(
+           'usuario' => $usuario
+        ));
+        return $resultados;
+    }
 }

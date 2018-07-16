@@ -11,6 +11,7 @@ use Fx\SchoolBundle\Form\Model\BuscarUsuario;
 use Fx\SchoolBundle\Form\Model\ConsultarDocumento;
 use Fx\SchoolBundle\Form\UsuarioType;
 use Fx\SchoolBundle\Manager\ConsultaManager;
+use Fx\SchoolBundle\Manager\ImageManager;
 use Fx\SchoolBundle\Manager\UsuarioManager;
 use JMS\DiExtraBundle\Annotation as DI;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,6 +32,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class UsuarioController extends Controller
 {
+    /**
+     * @DI\Inject("fx_school.foto_manager")
+     * @var $imageManager ImageManager
+     */
+    private $imageManager;
 
 
     /**
@@ -273,6 +279,20 @@ class UsuarioController extends Controller
 
         return $this->render('FxSchoolBundle:Usuario:Form/enable_form.html.twig', array(
             'form' => $form->createView(),
+        ));
+    }
+    /**
+     * @Route("/historial", name="fx_school.usuario.historial")
+     * @Security("has_role('ROLE_VISITANTE')")
+     * @Method("GET")
+     */
+    public function historialAction(Request $request)
+    {
+        $user=$this->imageManager->getUserLogeado();
+        $imagenes = $this->imageManager->getImageUser();
+        return $this->render('FxSchoolBundle:Usuario:historial.html.twig', array(
+            'usuario' => $user,
+            'imagenes' => $imagenes
         ));
     }
 }

@@ -85,5 +85,6 @@ class ConsultarController extends Controller
         ));
     }
 
+
 }
 

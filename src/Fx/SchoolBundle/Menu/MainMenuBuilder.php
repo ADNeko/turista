@@ -17,6 +17,7 @@ class MainMenuBuilder extends ContainerAware
         $this->addInicio($menu);
         $this->addPerfil($menu);
         $this->addConsultar($menu);
+        $this->addHistorial($menu);
         $this->addUsuarios($menu);
         $this->setCurrentRoute($menu);
 
@@ -54,6 +55,16 @@ class MainMenuBuilder extends ContainerAware
 
         $menu->addChild($label, array(
             'route' => 'fx_tourist.foto.subir',
+        ));
+    }
+
+
+    private function addHistorial(ItemInterface $menu)
+    {
+        $this->menuItems['historial'] = $label = '<i class="fa fa-book"></i>Historial';
+
+        $menu->addChild($label, array(
+            'route' => 'fx_school.usuario.historial',
         ));
     }
 
@@ -102,6 +113,9 @@ class MainMenuBuilder extends ContainerAware
         } elseif ($this->startsWith($routeName, 'fx_tourist.foto.subir')) {
         $menu[$this->menuItems['consultar']]->setCurrent(true);
     }
+        elseif ($this->startsWith($routeName, 'fx_school.usuario.historial')) {
+            $menu[$this->menuItems['historial']]->setCurrent(true);
+        }
     }
 
 

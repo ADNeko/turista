@@ -1,0 +1,31 @@
+{% extends 'FxSchoolBundle::layout.html.twig' %}
+
+{% block page_header %} HISTORIAL DE BUSQUEDAS {% endblock %}
+{% block sub_header %} historial de {{ usuario.nombres }} {{ usuario.apellidoPaterno }} {% endblock %}
+
+{% block content -%}
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <table id="fx-usuarios-table" class="table table-condensed table-bordered table-hover fx-record-list-table">
+                <thead>
+                <tr>
+                    <th>Nombre del archivo</th>
+                    {#<th>Fecha de registro</th>#}
+                    <th>IP</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for image in imagenes %}
+                        <tr>
+                            <td>{{ image.path | upper }}</td>
+                            <td>{{ image.ip | default("localhost")}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
